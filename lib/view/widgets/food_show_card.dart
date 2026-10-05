@@ -1,4 +1,3 @@
-import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
 
 class FoodShowCard extends StatelessWidget {
@@ -16,11 +15,10 @@ class FoodShowCard extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     return Card(
-      borderOnForeground: true,
       color: Color(Colors.lightGreen.toARGB32()),
       child: ListTile(
         title: Text(name),
-        subtitle: Text("${caloriesPer100grams.toStringAsFixed(0)} kcal"),
+        subtitle: Text("${caloriesPer100grams.toStringAsFixed(0)} kcal/100g"),
       ),
     );
   }

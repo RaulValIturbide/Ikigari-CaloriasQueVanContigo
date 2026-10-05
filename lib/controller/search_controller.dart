@@ -8,16 +8,16 @@ class SearchController {
     FoodData(id: 3, name: 'Zumo', caloriesPer100g: 150),
     FoodData(id: 4, name: 'Mandarina', caloriesPer100g: 350),
   ];
-  List<FoodData> _listCoincidenceFood = [];
+  final List<FoodData> _listCoincidenceFood = [];
 
   List<FoodData> get listCoincidenceFood => _listCoincidenceFood;
 
   void resolveCoincidence(String user) {
     _listCoincidenceFood.clear();
     for (FoodData item in listAllFood) {
-      if (item.name.toLowerCase().contains(user.toLowerCase())) {
+      if (item.name.toLowerCase().trim().contains(user.toLowerCase().trim())) {
         _listCoincidenceFood.add(item);
       }
-    };
+    }
   }
 }
