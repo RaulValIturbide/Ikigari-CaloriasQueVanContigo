@@ -1,7 +1,12 @@
 import 'package:flutter/material.dart';
+import 'package:ikigari/model/Repository/food_consumed_repository.dart';
+import 'package:ikigari/model/Repository/ikigari_local_database.dart';
+import 'package:ikigari/model/food_consumed_data.dart';
 import 'package:ikigari/view/main_page.dart';
 
-void main() {
+Future<void> main() async {
+  WidgetsFlutterBinding.ensureInitialized();
+  await IkigariLocalDatabase().getDatabase();
   runApp(const MyApp());
 }
 

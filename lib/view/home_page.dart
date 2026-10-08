@@ -3,19 +3,50 @@ import 'package:ikigari/controller/home_controller.dart';
 import 'package:ikigari/model/food_consumed_data.dart';
 import 'package:ikigari/view/widgets/food_consumed_card.dart';
 
-class HomePage extends StatelessWidget {
+class HomePage extends StatefulWidget {
   const HomePage({super.key});
 
   @override
-  Widget build(BuildContext context) {
-    HomeController homeController = HomeController();
-    int objectiveCalories = 2400;
-    double dailyCalories = homeController.dailyCalories();
-    String dailyCaloriesToShow = dailyCalories.toStringAsFixed(0);
+  State<HomePage> createState() => _HomePageState();
+}
 
+class _HomePageState extends State<HomePage> {
+  late final Future<double> _dailyCalories;
+  final HomeController _homeController = HomeController();
+  int objectiveCalories = 2400; //TEMPORAL
+
+  @override
+  void initState() {
+    super.initState();
+    _dailyCalories = _homeController.dailyCalories();
+  }
+
+  @override
+  Widget build(BuildContext context) {
+    return FutureBuilder<double>(
+        future: _dailyCalories,
+        builder: (context, snapshot) {
+        if(snapshot.connectionState == ConnectionState.waiting){
+          return const Center(child: CircularProgressIndicator());
+        }else if(snapshot.hasError){
+          return Text("Error Fatal: ${snapshot.error}");
+        }else{
+          double daily = snapshot.data ?? 0;
+          return visual(objectiveCalories,daily,_homeController);
+        }
+    });
+
+
+  }
+
+  Widget visual(int objectiveCalories,double dailyCalories,HomeController homeController)
+  {
     return Scaffold(
       appBar: AppBar(
-        backgroundColor: Theme.of(context).colorScheme.inversePrimary,
+        backgroundColor: Theme
+            .of(context)
+            .colorScheme
+            .inversePrimary,
         title: Text('IKIGARI'),
       ),
       body: Padding(
@@ -32,12 +63,12 @@ class HomePage extends StatelessWidget {
                 borderRadius: BorderRadius.all(Radius.circular(15)),
                 semanticsLabel: 'Calorias de hoy',
               ),
-              Text('$dailyCaloriesToShow/$objectiveCalories'),
+              Text('${dailyCalories.toStringAsFixed(0)} / $objectiveCalories'),
               Expanded(
                 child: ListView.builder(
                   itemBuilder: (context, index) {
                     FoodConsumedData itemConsumed =
-                        homeController.listFoodConsumed[index];
+                    homeController.listFoodConsumed[index];
                     return FoodConsumedCard(
                       name: itemConsumed.foodName,
                       calories: itemConsumed.totalCalories,
