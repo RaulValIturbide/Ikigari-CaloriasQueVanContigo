@@ -3,7 +3,7 @@
 
 class FoodConsumedData {
   FoodConsumedData({
-    required this.id,
+    this.id,
     required this.foodId,
     required this.foodName,
     required this.foodCaloriesPer100g,
@@ -30,9 +30,14 @@ class FoodConsumedData {
       'grams': grams,
     };
   }
-  /*
-    FoodConsumedData toObject<FoodConsumedData>(){
 
+  factory FoodConsumedData.fromMap(Map<String, Object?> map) {
+    return FoodConsumedData(
+        id: map['id'] as int,
+        foodId: map['foodId'] as String,
+        foodName: map['foodName'] as String,
+        foodCaloriesPer100g: (map['foodCaloriesPer100g'] as num).toDouble(),
+        dateAndHour:DateTime.parse(map['dateAndHour'] as String),
+        grams: (map['grams'] as num).toDouble());
   }
-  */
 }
