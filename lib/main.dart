@@ -1,11 +1,11 @@
 import 'package:flutter/material.dart';
-import 'package:ikigari/model/Repository/food_consumed_repository.dart';
+import 'package:ikigari/model/Services/open_food_facts_service.dart';
 import 'package:ikigari/model/Repository/ikigari_local_database.dart';
-import 'package:ikigari/model/food_consumed_data.dart';
 import 'package:ikigari/view/main_page.dart';
 
 Future<void> main() async {
   WidgetsFlutterBinding.ensureInitialized();
+  OpenFoodFactsService.config();
   await IkigariLocalDatabase().getDatabase();
   runApp(const MyApp());
 }
@@ -22,4 +22,6 @@ class MyApp extends StatelessWidget {
       home: MainPage(),
     );
   }
+
+
 }
