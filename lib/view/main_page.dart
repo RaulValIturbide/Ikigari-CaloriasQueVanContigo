@@ -1,6 +1,6 @@
 import 'package:flutter/material.dart';
 import 'package:ikigari/view/home_page.dart';
-import 'package:ikigari/view/search_page.dart';
+import 'package:ikigari/view/searcher_page.dart';
 
 class MainPage extends StatefulWidget {
   const MainPage({super.key});
@@ -12,7 +12,7 @@ class MainPage extends StatefulWidget {
 }
 
 class _MainPageState extends State<MainPage> {
-  final List<Widget> _pages = [HomePage(), SearchPage(), Placeholder()];
+  final List<Widget> _pages = [HomePage(), SearcherPage(), Placeholder()];
   final List<Widget> _navigations = [
     NavigationDestination(icon: Icon(Icons.home), label: "Home"),
     NavigationDestination(icon: Icon(Icons.food_bank), label: "Food"),

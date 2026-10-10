@@ -12,7 +12,6 @@ class HomeController {
 
   double dailyCalories() {
     double dailyTotal = 0;
-    //await Future.delayed(Duration(seconds: 2));
     for (FoodConsumedData item in _foodConsumed) {
       dailyTotal += item.totalCalories;
     }

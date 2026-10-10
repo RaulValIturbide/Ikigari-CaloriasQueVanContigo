@@ -6,17 +6,17 @@ class FoodConsumedRepository {
   final IkigariLocalDatabase _localDb = IkigariLocalDatabase();
   static const String _nameTable = "FOODCONSUMED";
 
-  Future<int> saveFoodConsumed(FoodConsumedData foodConsumed) async{
+  Future<int> saveFoodConsumed(FoodConsumedData foodConsumed) async {
     final Database db = await _localDb.getDatabase();
-    return db.insert(_nameTable,foodConsumed.toMap());
+    return db.insert(_nameTable, foodConsumed.toMap());
   }
 
-  Future<List<FoodConsumedData>> selectFoodConsumed() async{
+  Future<List<FoodConsumedData>> selectFoodConsumed() async {
     final Database db = await _localDb.getDatabase();
-    final List<Map<String,dynamic>> maps = await db.query(_nameTable);
-    return maps.map((mapa) => FoodConsumedData.fromMap(mapa)).toList();
+    final List<Map<String, dynamic>> listFoodConsumed = await db.query(
+      _nameTable,
+      where: "date(dateAndHour) = date('now', 'localtime');",
+    );
+    return listFoodConsumed.map((food) => FoodConsumedData.fromMap(food)).toList();
   }
-
-
-
 }

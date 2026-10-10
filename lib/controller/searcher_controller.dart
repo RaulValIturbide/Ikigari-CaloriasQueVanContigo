@@ -1,7 +1,7 @@
 import 'package:ikigari/model/Services/open_food_facts_service.dart';
 import 'package:ikigari/model/food_data.dart';
 
-class SearchController {
+class SearcherController {
 
   final List<FoodData> _listCoincidenceFood = [];
   final List<FoodData> _allFoodList = OpenFoodFactsService().fakeList;
