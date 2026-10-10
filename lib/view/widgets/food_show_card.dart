@@ -10,7 +10,7 @@ class FoodShowCard extends StatelessWidget {
     required this.caloriesPer100grams,
   });
 
-  final int id;
+  final String id;
   final String name;
   final double caloriesPer100grams;
 

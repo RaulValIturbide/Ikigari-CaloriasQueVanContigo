@@ -11,27 +11,27 @@ class HomePage extends StatefulWidget {
 }
 
 class _HomePageState extends State<HomePage> {
-  late final Future<double> _dailyCalories;
   final HomeController _homeController = HomeController();
+  late Future<void> _loadFoodConsumed;
   int objectiveCalories = 2400; //TEMPORAL
 
   @override
   void initState() {
     super.initState();
-    _dailyCalories = _homeController.dailyCalories();
+    _loadFoodConsumed = _homeController.loadFoodConsumed();
   }
 
   @override
   Widget build(BuildContext context) {
-    return FutureBuilder<double>(
-        future: _dailyCalories,
+    return FutureBuilder<void>(
+        future: _loadFoodConsumed,
         builder: (context, snapshot) {
         if(snapshot.connectionState == ConnectionState.waiting){
           return const Center(child: CircularProgressIndicator());
         }else if(snapshot.hasError){
           return Text("Error Fatal: ${snapshot.error}");
         }else{
-          double daily = snapshot.data ?? 0;
+          double daily = _homeController.dailyCalories();
           return visual(objectiveCalories,daily,_homeController);
         }
     });

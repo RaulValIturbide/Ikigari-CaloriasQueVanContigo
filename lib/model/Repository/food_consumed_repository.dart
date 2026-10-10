@@ -11,6 +11,12 @@ class FoodConsumedRepository {
     return db.insert(_nameTable,foodConsumed.toMap());
   }
 
+  Future<List<FoodConsumedData>> selectFoodConsumed() async{
+    final Database db = await _localDb.getDatabase();
+    final List<Map<String,dynamic>> maps = await db.query(_nameTable);
+    return maps.map((mapa) => FoodConsumedData.fromMap(mapa)).toList();
+  }
+
 
 
 }
