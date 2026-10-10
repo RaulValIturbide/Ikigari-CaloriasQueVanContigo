@@ -1,7 +1,7 @@
 import 'package:flutter/material.dart';
 import 'package:ikigari/controller/searcher_controller.dart';
 import 'package:ikigari/model/food_data.dart';
-import 'package:ikigari/view/widgets/food_show_card.dart';
+import 'package:ikigari/view/widgets/food_searcher_card.dart';
 
 class SearcherPage extends StatefulWidget {
   const SearcherPage({super.key});
@@ -56,7 +56,7 @@ class _SearcherPageState extends State<SearcherPage> {
                 child: ListView.builder(
                   itemBuilder: (context, index) {
                     FoodData item = searchController.listCoincidenceFood[index];
-                    return FoodShowCard(
+                    return FoodSearcherCard(
                       id: item.id,
                       name: item.name,
                       caloriesPer100grams: item.caloriesPer100g,

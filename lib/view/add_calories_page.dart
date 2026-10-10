@@ -18,7 +18,10 @@ class _AddCaloriesPageState extends State<AddCaloriesPage> {
     return Scaffold(
       appBar: AppBar(
         title: Text("Alimento"),
-        backgroundColor: Theme.of(context).colorScheme.inversePrimary,
+        backgroundColor: Theme
+            .of(context)
+            .colorScheme
+            .inversePrimary,
       ),
       body: Column(
         spacing: 20,
@@ -29,6 +32,11 @@ class _AddCaloriesPageState extends State<AddCaloriesPage> {
             height: 150,
           ),
           TextField(decoration: InputDecoration(label: Text("Gramos"))),
+          ElevatedButton.icon(
+            onPressed: () {},
+            label: Text("Añadir Alimento"),
+            icon: Icon(Icons.add),
+          ),
         ],
       ),
     );
